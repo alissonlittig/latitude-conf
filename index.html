@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Latitude 2027 — conferência de engenharia e produto (demo)</title>
+<meta name="description" content="Latitude: conferência fictícia de engenharia, dados e produto. Dois dias, três trilhas, programação interativa e ingressos. Projeto de demonstração.">
+<meta name="theme-color" content="#0d0f14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230d0f14'/%3E%3Cpath d='M6 22a14 14 0 0 1 20 0M9 17a9 9 0 0 1 14 0' stroke='%23ff5a36' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<script type="module" src="/src/main.js"></script>
+</head>
+<body>
+<a class="skip" href="#programacao">Ir para a programação</a>
+<div class="demo-bar" role="note">Projeto de demonstração: evento, marcas, pessoas e preços fictícios. Nenhum pagamento é processado.</div>
+
+<header class="top">
+  <a class="brand" href="#topo" aria-label="Latitude 2027, início">
+    <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 23a15 15 0 0 1 22 0M9 17.5a9.5 9.5 0 0 1 14 0M13 12a4.5 4.5 0 0 1 6 0" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+    <span>Latitude<small>’27</small></span>
+  </a>
+  <nav aria-label="Principal">
+    <a href="#programacao">Programação</a><a href="#palestrantes">Pessoas</a><a href="#local">Local</a><a href="#faq">Dúvidas</a>
+  </nav>
+  <a class="btn btn-sm" href="#ingressos">Ingressos</a>
+</header>
+
+<main id="topo">
+  <section class="hero">
+    <svg class="arcs" viewBox="0 0 800 600" aria-hidden="true" preserveAspectRatio="xMidYMax slice">
+      <g fill="none" stroke="currentColor" stroke-width="1">
+        <circle cx="400" cy="720" r="180"/><circle cx="400" cy="720" r="260"/><circle cx="400" cy="720" r="340"/>
+        <circle cx="400" cy="720" r="420"/><circle cx="400" cy="720" r="500"/><circle cx="400" cy="720" r="580"/>
+      </g>
+    </svg>
+    <div class="wrap hero-in">
+      <p class="eyebrow">14 e 15 de maio de 2027 · Curitiba, PR</p>
+      <h1>Engenharia que<br>sabe onde está.</h1>
+      <p class="lead">Dois dias, três trilhas e 19 sessões sobre sistemas, dados e produto. Sem hype: casos reais, falhas contadas e gente que constrói.</p>
+      <div class="cta">
+        <a class="btn" href="#ingressos">Garantir ingresso</a>
+        <a class="btn btn-ghost" href="#programacao">Montar minha agenda</a>
+      </div>
+      <div class="count" id="count" role="timer" aria-label="Contagem regressiva para o evento"></div>
+    </div>
+  </section>
+
+  <section class="facts wrap" aria-label="Números do evento">
+    <div><b>2</b><span>dias</span></div><div><b>19</b><span>sessões</span></div><div><b>8</b><span>palestrantes</span></div><div><b>600</b><span>lugares</span></div>
+  </section>
+
+  <section id="programacao" class="sec wrap">
+    <header class="sec-h"><p class="eyebrow dark">Programação</p><h2>Escolha o dia, monte a sua trilha.</h2>
+      <p>Marque sessões com ★ para criar sua agenda. Avisamos quando dois horários se chocam e você exporta tudo para o calendário.</p></header>
+    <div class="tools">
+      <div class="seg" id="days" role="tablist" aria-label="Dia"></div>
+      <div class="seg" id="tracks" role="group" aria-label="Trilha"></div>
+      <label class="search"><span class="sr">Buscar sessão</span><input id="q" type="search" placeholder="Buscar sessão…" autocomplete="off"></label>
+    </div>
+    <div class="mine-bar">
+      <label class="switch"><input type="checkbox" id="onlyMine"><span>Só minha agenda <em id="mineCount">0</em></span></label>
+      <button class="link" id="ics" type="button" disabled>Exportar .ics</button>
+    </div>
+    <p class="warn" id="warn" role="status" hidden></p>
+    <ol class="agenda" id="agenda"></ol>
+  </section>
+
+  <section id="palestrantes" class="sec dark">
+    <div class="wrap">
+      <header class="sec-h"><p class="eyebrow">Palestrantes</p><h2>Quem sobe ao palco.</h2></header>
+      <ul class="people" id="people"></ul>
+    </div>
+  </section>
+
+  <section id="ingressos" class="sec wrap">
+    <header class="sec-h"><p class="eyebrow dark">Ingressos</p><h2>Três jeitos de estar lá.</h2>
+      <p>Cupom de teste: <code>LATITUDE10</code> (10%). Nada é cobrado nesta demonstração.</p></header>
+    <div class="tickets" id="tickets"></div>
+    <div class="order" id="order" aria-live="polite"></div>
+  </section>
+
+  <section id="local" class="sec dark">
+    <div class="wrap venue">
+      <div><p class="eyebrow">Local</p><h2>Galpão Latitude</h2>
+        <p>Antigo galpão ferroviário reformado, com três salas, praça de alimentação e área de convivência. Endereço e mapa são fictícios nesta demonstração.</p>
+        <ul class="plain"><li>Portões às 08h30</li><li>Estacionamento de bicicletas</li><li>Acesso por rampa e elevador</li><li>Sala de descompressão silenciosa</li></ul></div>
+      <svg class="map" viewBox="0 0 320 240" role="img" aria-label="Mapa esquemático fictício do local"><rect width="320" height="240" rx="18" fill="#161a23"/>
+        <g stroke="#2a3040" stroke-width="1"><path d="M0 60h320M0 120h320M0 180h320M80 0v240M160 0v240M240 0v240"/></g>
+        <path d="M0 150C70 140 120 110 210 120S300 60 320 50" stroke="#ff5a36" stroke-width="3" fill="none"/>
+        <rect x="132" y="96" width="76" height="52" rx="6" fill="#ff5a36"/><text x="170" y="127" text-anchor="middle" fill="#0d0f14" font-family="Inter" font-size="11" font-weight="600">Galpão</text></svg>
+    </div>
+  </section>
+
+  <section id="faq" class="sec wrap">
+    <header class="sec-h"><p class="eyebrow dark">Dúvidas</p><h2>O que perguntam antes de comprar.</h2></header>
+    <div class="faq" id="faqList"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><b>Latitude ’27</b> é um projeto de demonstração criado para portfólio. Todo conteúdo é fictício.</p>
+    <p><a href="https://alissonlittig.github.io/">Portfólio de Alisson Littig</a> · <a href="https://github.com/alissonlittig/latitude-conf">Código</a></p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
