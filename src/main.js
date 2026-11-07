@@ -88,8 +88,8 @@ function renderTickets() {
   $('#tickets').innerHTML = TICKETS.map((t) => `
     <article class="tk${t.featured ? ' feat' : ''}${sel.id === t.id ? ' on' : ''}">
       ${t.featured ? '<span class="pill">Mais escolhido</span>' : ''}
-      <h3>${t.name}</h3><p class="price">${brl(t.price)}<small>/pessoa</small></p><p class="blurb">${t.blurb}</p>
-      <ul>${t.perks.map((p) => `<li>${p}</li>`).join('')}</ul>
+      <h3>${esc(t.name)}</h3><p class="price">${brl(t.price)}<small>/pessoa</small></p><p class="blurb">${esc(t.blurb)}</p>
+      <ul>${t.perks.map((p) => `<li>${esc(p)}</li>`).join('')}</ul>
       <button type="button" class="btn ${sel.id === t.id ? '' : 'btn-ghost-d'}" data-t="${t.id}" aria-pressed="${sel.id === t.id}">${sel.id === t.id ? 'Selecionado' : 'Escolher'}</button>
     </article>`).join('');
   renderOrder();
